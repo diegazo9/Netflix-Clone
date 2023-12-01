@@ -58,8 +58,7 @@ const Auth = () => {
       await axios.post('/api/register', {
         email,
         name,
-        password,
-        callbackUrl: '/'
+        password
       });
 
       login();
@@ -77,14 +76,14 @@ const Auth = () => {
         <div className="flex justify-center">
           <div className="bg-black bg-opacity-70 px-16 py-16 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full">
             <h2 className="text-white text-4xl mb-8 font-semibold">
-              {variant === 'login' ? 'Registrarse' : 'Registrar'}
+              {variant === 'login' ? 'Sign in' : 'Register'}
             </h2>
             <div className="flex flex-col gap-4">
-              {variant === 'Registrar' && (
+              {variant === 'register' && (
                 <Input
                   id="name"
                   type="text"
-                  label="Usuario"
+                  label="Username"
                   value={name}
                   onChange={(e: any) => setName(e.target.value)} 
                 />
@@ -92,14 +91,14 @@ const Auth = () => {
               <Input
                 id="email"
                 type="email"
-                label="Numero de telefono o correo electronico"
+                label="Email address or phone number"
                 value={email}
                 onChange={(e: any) => setEmail(e.target.value)} 
               />
               <Input
                 type="password" 
                 id="password" 
-                label="Contraseña" 
+                label="Password" 
                 value={password}
                 onChange={(e: any) => setPassword(e.target.value)} 
               />
@@ -108,17 +107,17 @@ const Auth = () => {
               {variant === 'login' ? 'Login' : 'Sign up'}
             </button>
             <div className="flex flex-row items-center gap-4 mt-8 justify-center">
-              {/* <div onClick={() => signIn('google', { callbackUrl: '/profiles' })} className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition">
+              <div onClick={() => signIn('google', { callbackUrl: '/profiles' })} className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition">
                 <FcGoogle size={32} />
-              </div> */}
+              </div>
               <div onClick={() => signIn('github', { callbackUrl: '/profiles' })} className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition">
                 <FaGithub size={32} />
               </div>
             </div>
             <p className="text-neutral-500 mt-12">
-              {variant === 'login' ? 'Primera vez en Netflix?' : 'Ya tienes una cuenta?'}
+              {variant === 'login' ? 'First time using Netflix?' : 'Already have an account?'}
               <span onClick={toggleVariant} className="text-white ml-1 hover:underline cursor-pointer">
-                {variant === 'login' ? 'Crear un cuenta' : 'Login'}
+                {variant === 'login' ? 'Create an account' : 'Login'}
               </span>
               .
             </p>
